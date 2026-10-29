@@ -13,7 +13,6 @@ import {
   X,
   ChevronDown,
   LogOut,
-  Sparkles,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -175,31 +174,28 @@ export function Navbar() {
                   variant="ghost"
                   size="sm"
                   onClick={() => logout()}
-                  title="Logout"
                   className="px-2.5 rounded-full"
                 >
                   <LogOut className="w-4 h-4 text-zinc-400 hover:text-rose-400" />
                 </Button>
               </div>
             ) : (
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => window.dispatchEvent(new Event('open-vip-modal'))}
-                  className="px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-gradient-to-r from-[#ff5a1f] to-[#ff7d47] text-white hover:brightness-110 shadow-[0_2px_12px_rgba(255,90,31,0.35)] transition-all cursor-pointer hidden xl:inline-flex items-center gap-1.5"
-                >
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>Free Pass</span>
-                </button>
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 <Link href="/login">
-                  <Button variant="ghost" size="sm" className="rounded-full">
+                  <button
+                    type="button"
+                    className="px-2.5 py-1 text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer"
+                  >
                     Sign In
-                  </Button>
+                  </button>
                 </Link>
                 <Link href="/register">
-                  <Button variant="primary" size="sm" className="rounded-full">
+                  <button
+                    type="button"
+                    className="px-3.5 py-1 rounded-full bg-gradient-to-r from-[#ff5a1f] to-[#ff7d47] text-white text-[11px] font-bold uppercase tracking-wider shadow-[0_4px_12px_rgba(255,90,31,0.35)] hover:shadow-[0_6px_18px_rgba(255,90,31,0.55)] hover:scale-105 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+                  >
                     Join Now
-                  </Button>
+                  </button>
                 </Link>
               </div>
             )}
@@ -287,17 +283,6 @@ export function Navbar() {
                   </>
                 ) : (
                   <>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        window.dispatchEvent(new Event('open-vip-modal'));
-                      }}
-                      className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-gradient-to-r from-[#ff5a1f] to-[#ff7d47] text-white font-black text-sm shadow-lg cursor-pointer"
-                    >
-                      <Sparkles className="w-4 h-4" />
-                      <span>Claim 1-Day Free VIP Pass</span>
-                    </button>
                     <Link href="/register" className="w-full">
                       <Button variant="primary" size="md" className="w-full">
                         Join FitLife Today

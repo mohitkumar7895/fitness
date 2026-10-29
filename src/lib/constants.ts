@@ -46,7 +46,7 @@ export const NAV_LINKS = [
     ],
   },
   { label: 'Nutrition', href: '/nutrition' },
-  { label: 'Trainers', href: '/trainers' },
+  { label: 'Coach', href: '/trainers' },
   { label: 'Membership', href: '/membership' },
   { label: 'Transformations', href: '/transformations' },
   { label: 'About', href: '/about' },
@@ -79,7 +79,7 @@ export const MOBILE_NAV_LINKS = [
     ],
   },
   { label: 'Nutrition', href: '/nutrition' },
-  { label: 'Trainers', href: '/trainers' },
+  { label: 'Coach', href: '/trainers' },
   { label: 'Membership', href: '/membership' },
   { label: 'Transformations', href: '/transformations' },
   { label: 'About Us', href: '/about' },
@@ -91,7 +91,7 @@ export const MOBILE_NAV_LINKS = [
 export const FOOTER_LINKS = {
   company: [
     { label: 'About Us', href: '/about' },
-    { label: 'Our Trainers', href: '/trainers' },
+    { label: 'Head Coach', href: '/trainers' },
     { label: 'Membership Plans', href: '/membership' },
     { label: 'Transformations', href: '/transformations' },
     { label: 'Fitness Gallery', href: '/gallery' },

@@ -14,7 +14,7 @@ export function ThemeToggle({
   className = '',
   variant = 'icon',
 }: ThemeToggleProps) {
-  const { theme, setTheme, isDark } = useTheme();
+  const { theme, setTheme, toggleTheme, isDark } = useTheme();
   const id = useId();
 
   // Full segmented pill with labels (for mobile drawer, footer, settings)
@@ -23,8 +23,8 @@ export function ThemeToggle({
       <div
         className={`inline-flex items-center p-1 rounded-full border transition-all duration-300 ${
           isDark
-            ? 'bg-[#151518] border-white/10 shadow-inner'
-            : 'bg-zinc-100 border-zinc-200 shadow-inner'
+            ? 'bg-[#151518] border-white/15 shadow-inner'
+            : 'bg-slate-200/80 border-slate-300 shadow-inner'
         } ${className}`}
         role="group"
         aria-label="Theme mode switcher"
@@ -34,7 +34,7 @@ export function ThemeToggle({
           onClick={() => setTheme('light')}
           className={`relative flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
             !isDark
-              ? 'text-zinc-900 font-extrabold'
+              ? 'text-slate-900 font-extrabold'
               : 'text-zinc-400 hover:text-zinc-200'
           }`}
           aria-pressed={!isDark}
@@ -42,7 +42,7 @@ export function ThemeToggle({
           {!isDark && (
             <motion.div
               layoutId={`theme-slider-pill-${id}`}
-              className="absolute inset-0 bg-white rounded-full shadow-md border border-zinc-200"
+              className="absolute inset-0 bg-white rounded-full shadow-md border border-slate-300"
               transition={{ type: 'spring', stiffness: 500, damping: 35 }}
             />
           )}
@@ -58,7 +58,7 @@ export function ThemeToggle({
           className={`relative flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
             isDark
               ? 'text-white font-extrabold'
-              : 'text-zinc-500 hover:text-zinc-800'
+              : 'text-slate-600 hover:text-slate-900'
           }`}
           aria-pressed={isDark}
         >
@@ -70,7 +70,7 @@ export function ThemeToggle({
             />
           )}
           <span className="relative z-10 flex items-center gap-1.5">
-            <Moon className={`w-3.5 h-3.5 ${isDark ? 'text-white fill-white' : 'text-zinc-500'}`} />
+            <Moon className={`w-3.5 h-3.5 ${isDark ? 'text-white fill-white' : 'text-slate-600'}`} />
             <span>Dark</span>
           </span>
         </button>
@@ -78,57 +78,69 @@ export function ThemeToggle({
     );
   }
 
-  // Sleek dual-icon mini switcher for Navbar & headers
+  // Ultra-responsive dual capsule toggle for Navbar
   return (
     <div
-      className={`inline-flex items-center p-0.5 rounded-full border transition-all duration-300 ${
+      onClick={(e) => {
+        // If clicking the container background, toggle smoothly
+        if (e.target === e.currentTarget) {
+          toggleTheme();
+        }
+      }}
+      className={`relative inline-flex items-center p-1 rounded-full border transition-all duration-300 cursor-pointer select-none ${
         isDark
-          ? 'bg-black/60 border-white/15 backdrop-blur-md'
-          : 'bg-zinc-100 border-zinc-300 shadow-sm backdrop-blur-md'
+          ? 'bg-black/75 border-white/20 hover:border-white/35 backdrop-blur-xl shadow-lg'
+          : 'bg-white border-slate-300 hover:border-slate-400 shadow-md backdrop-blur-xl'
       } ${className}`}
       role="group"
       aria-label="Theme mode switcher"
     >
+      {/* Light Button */}
       <button
         type="button"
-        onClick={() => setTheme('light')}
-        title="Switch to Light Theme"
+        onClick={(e) => {
+          e.stopPropagation();
+          setTheme('light');
+        }}
         aria-label="Light Theme"
         className={`relative w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
           !isDark
             ? 'text-amber-500'
-            : 'text-zinc-400 hover:text-zinc-200'
+            : 'text-zinc-500 hover:text-zinc-300'
         }`}
       >
         {!isDark && (
           <motion.div
             layoutId={`theme-mini-slider-${id}`}
-            className="absolute inset-0 bg-white rounded-full shadow-md border border-zinc-200"
+            className="absolute inset-0 bg-slate-100 rounded-full shadow-sm border border-slate-200"
             transition={{ type: 'spring', stiffness: 500, damping: 35 }}
           />
         )}
-        <Sun className={`relative z-10 w-3.5 h-3.5 sm:w-4 sm:h-4 ${!isDark ? 'text-amber-500 fill-amber-500' : ''}`} />
+        <Sun className={`relative z-10 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 ${!isDark ? 'text-amber-500 fill-amber-500 rotate-0 scale-110' : '-rotate-90'}`} />
       </button>
 
+      {/* Dark Button */}
       <button
         type="button"
-        onClick={() => setTheme('dark')}
-        title="Switch to Dark Theme"
+        onClick={(e) => {
+          e.stopPropagation();
+          setTheme('dark');
+        }}
         aria-label="Dark Theme"
         className={`relative w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
           isDark
             ? 'text-white'
-            : 'text-zinc-500 hover:text-zinc-800'
+            : 'text-slate-400 hover:text-slate-700'
         }`}
       >
         {isDark && (
           <motion.div
             layoutId={`theme-mini-slider-${id}`}
-            className="absolute inset-0 bg-[#ff5a1f] rounded-full shadow-[0_0_12px_rgba(255,90,31,0.5)]"
+            className="absolute inset-0 bg-gradient-to-r from-[#ff5a1f] to-[#e04a14] rounded-full shadow-[0_0_12px_rgba(255,90,31,0.5)]"
             transition={{ type: 'spring', stiffness: 500, damping: 35 }}
           />
         )}
-        <Moon className={`relative z-10 w-3.5 h-3.5 sm:w-4 sm:h-4 ${isDark ? 'text-white fill-white' : ''}`} />
+        <Moon className={`relative z-10 w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 ${isDark ? 'text-white fill-white rotate-0 scale-110' : 'rotate-45'}`} />
       </button>
     </div>
   );

@@ -188,13 +188,12 @@ export function MembershipSection({ plans = [] }: { plans: MembershipPlanItem[] 
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
-            <button
-              type="button"
-              onClick={() => window.dispatchEvent(new Event('open-vip-modal'))}
+            <Link
+              href="/contact"
               className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all cursor-pointer"
             >
               Book Club Tour
-            </button>
+            </Link>
             <a
               href={`https://wa.me/${SITE_CONFIG.whatsapp?.replace(/\D/g, '')}?text=${encodeURIComponent(
                 'Hi FitLife Wellness, I have a few questions regarding your membership tiers and facilities.'

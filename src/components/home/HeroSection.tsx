@@ -142,28 +142,29 @@ export function HeroSection() {
             International-grade personal coaching, biomechanically perfected training, and customized sports nutrition.
           </p>
 
-                {/* High-Converting Action Buttons */}
+          {/* High-Converting Action Buttons */}
           <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-                <button
-                  type="button"
-                  onClick={() => window.dispatchEvent(new Event('open-vip-modal'))}
-                  className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gradient-to-r from-[#ff5a1f] to-[#ff7d47] text-white text-sm font-black uppercase tracking-wider shadow-[0_10px_35px_rgba(255,90,31,0.5)] hover:shadow-[0_14px_45px_rgba(255,90,31,0.7)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <Sparkles className="w-4 h-4 fill-white/80" />
-                  <span>Claim 1-Day Free Pass</span>
-                </button>
+            <Link href="/programs" className="w-full sm:w-auto">
+              <Button
+                variant="primary"
+                size="lg"
+                className="w-full sm:w-auto justify-center shadow-[0_10px_30px_rgba(255,90,31,0.35)]"
+                rightIcon={<ArrowRight className="w-4 h-4" />}
+              >
+                Explore Programs
+              </Button>
+            </Link>
 
-                <Link href="/programs" className="w-full sm:w-auto">
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    className="w-full sm:w-auto justify-center"
-                    rightIcon={<ArrowRight className="w-4 h-4" />}
-                  >
-              Explore Programs
-            </Button>
-          </Link>
-        </div>
+            <Link href="/membership" className="w-full sm:w-auto">
+              <Button
+                variant="secondary"
+                size="lg"
+                className="w-full sm:w-auto justify-center"
+              >
+                View Memberships
+              </Button>
+            </Link>
+          </div>
       </div>
     </div>
 

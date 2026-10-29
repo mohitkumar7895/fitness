@@ -127,7 +127,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
             <button
               onClick={() => logout()}
-              title="Sign Out"
+              aria-label="Sign Out"
               className="text-zinc-400 hover:text-rose-400 p-1.5 cursor-pointer"
             >
               <LogOut className="w-4 h-4" />

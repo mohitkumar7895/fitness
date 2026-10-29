@@ -37,7 +37,7 @@ export default async function HomePage() {
        FROM coach_profiles cp 
        JOIN users u ON cp.user_id = u.id 
        WHERE cp.is_featured = 1 
-       ORDER BY cp.display_order ASC LIMIT 4`
+       ORDER BY cp.display_order ASC LIMIT 1`
     );
 
     plans = await query(
@@ -53,7 +53,7 @@ export default async function HomePage() {
     );
 
     faqs = await query(
-      `SELECT * FROM faqs WHERE is_published = 1 ORDER BY display_order ASC LIMIT 6`
+      `SELECT * FROM faqs WHERE is_published = 1 ORDER BY display_order ASC LIMIT 4`
     );
 
     blogs = await query(

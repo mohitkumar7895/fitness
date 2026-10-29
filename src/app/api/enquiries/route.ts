@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     // Build personalized WhatsApp direct link
     const waNumber = (SITE_CONFIG.whatsapp || '919876543210').replace(/\D/g, '');
     const waText = encodeURIComponent(
-      `Hello FitLife Wellness team! My name is ${name.trim()}. I just submitted a request for a 1-Day VIP Pass / Consultation for ${fitness_goal}. I would like to confirm my trial session!`
+      `Hello FitLife Wellness team! My name is ${name.trim()}. I just submitted an inquiry for a Consultation & Club Tour for ${fitness_goal}. I would like to schedule my visit!`
     );
     const whatsappUrl = `https://wa.me/${waNumber}?text=${waText}`;
 

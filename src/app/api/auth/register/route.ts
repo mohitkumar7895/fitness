@@ -104,7 +104,28 @@ export async function POST(request: Request) {
       ]
     );
 
-    // 3. Initial body measurement if height and weight provided
+    // 3. Insert lead into enquiries table so Admin gets the inquiry immediately
+    try {
+      const enqId = `enq_${Math.random().toString(36).substring(2, 11)}`;
+      await execute(
+        `INSERT INTO enquiries (id, name, email, phone, subject, message, fitness_goal, preferred_time, source, status, created_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'MEMBER_REGISTRATION', 'NEW', NOW())`,
+        [
+          enqId,
+          name,
+          email,
+          phone || null,
+          `New Member Registration: ${fitness_goal || 'General Fitness'}`,
+          notes || `New member registered. Goal: ${fitness_goal || 'General Fitness'}. Preferred workout time: ${preferred_time || 'Morning'}.`,
+          fitness_goal || 'General Fitness',
+          preferred_time || 'Morning',
+        ]
+      );
+    } catch (enqErr) {
+      console.error('Error recording lead enquiry on registration:', enqErr);
+    }
+
+    // 4. Initial body measurement if height and weight provided
     if (parsedHeight && parsedWeight) {
       const bmi = Number((parsedWeight / Math.pow(parsedHeight / 100, 2)).toFixed(1));
       await execute(
@@ -153,6 +174,12 @@ export async function POST(request: Request) {
       maxAge: 60 * 60 * 24 * 7, // 7 days
     });
 
+    const waNumber = (process.env.WHATSAPP_NUMBER || '919876543210').replace(/\D/g, '');
+    const waText = encodeURIComponent(
+      `Hi Coach Marcus! My name is ${name.trim()}. I just joined FitLife Wellness with the goal: "${fitness_goal || 'General Fitness'}". I would like to discuss my workout & nutrition plan!`
+    );
+    const whatsappUrl = `https://wa.me/${waNumber}?text=${waText}`;
+
     return NextResponse.json({
       success: true,
       user: {
@@ -162,6 +189,7 @@ export async function POST(request: Request) {
         role: 'CUSTOMER',
         avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=300&auto=format&fit=crop',
       },
+      whatsappUrl,
     });
   } catch (error: any) {
     console.error('Registration error:', error);

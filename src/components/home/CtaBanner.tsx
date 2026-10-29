@@ -30,17 +30,14 @@ export function CtaBanner() {
         </p>
 
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
-            type="button"
-            onClick={() => window.dispatchEvent(new Event('open-vip-modal'))}
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-[#ff5a1f] to-[#ff7d47] text-white font-black text-base shadow-[0_10px_35px_rgba(255,90,31,0.5)] hover:scale-105 hover:shadow-[0_15px_45px_rgba(255,90,31,0.7)] transition-all flex items-center justify-center gap-2 cursor-pointer"
-          >
-            <Sparkles className="w-5 h-5 fill-white/80" />
-            <span>Claim 1-Day Free VIP Pass</span>
-          </button>
           <Link href="/register" className="w-full sm:w-auto">
-            <Button variant="secondary" size="xl" className="w-full sm:w-auto" rightIcon={<ArrowRight className="w-5 h-5" />}>
+            <Button variant="primary" size="xl" className="w-full sm:w-auto shadow-[0_10px_35px_rgba(255,90,31,0.45)]" rightIcon={<ArrowRight className="w-5 h-5" />}>
               Start Transformation
+            </Button>
+          </Link>
+          <Link href="/membership" className="w-full sm:w-auto">
+            <Button variant="secondary" size="xl" className="w-full sm:w-auto">
+              View Memberships
             </Button>
           </Link>
         </div>
