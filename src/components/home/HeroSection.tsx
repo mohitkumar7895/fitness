@@ -60,9 +60,8 @@ export function HeroSection() {
 
   return (
     <section
-      className={`relative min-h-[75vh] sm:min-h-[80vh] lg:min-h-[85vh] flex items-center justify-center overflow-hidden transition-colors duration-300 ${
-        isDark ? 'bg-[#080808]' : 'bg-[#f8fafc]'
-      }`}
+      className={`relative min-h-[75vh] sm:min-h-[80vh] lg:min-h-[85vh] flex items-center justify-center overflow-hidden transition-colors duration-300 ${isDark ? 'bg-[#080808]' : 'bg-[#f8fafc]'
+        }`}
     >
       {/* Background Slideshow with Smooth Cross-fade */}
       <div className="absolute inset-0 z-0">
@@ -82,11 +81,10 @@ export function HeroSection() {
               priority
               sizes="100vw"
               style={{ objectPosition: activeSlide.position }}
-              className={`object-cover filter transition-all duration-700 ${
-                isDark
+              className={`object-cover filter transition-all duration-700 ${isDark
                   ? 'brightness-[0.50] contrast-110'
                   : 'brightness-[0.90] contrast-105'
-              }`}
+                }`}
             />
 
             {/* Seamless Natural Vignettes Matched to Active Theme */}
@@ -107,9 +105,8 @@ export function HeroSection() {
 
       {/* Subtle Glow */}
       <div
-        className={`absolute top-1/3 left-10 w-[350px] h-[350px] rounded-full blur-[120px] pointer-events-none z-1 ${
-          isDark ? 'bg-[#ff5a1f]/15' : 'bg-[#ff5a1f]/10'
-        }`}
+        className={`absolute top-1/3 left-10 w-[350px] h-[350px] rounded-full blur-[120px] pointer-events-none z-1 ${isDark ? 'bg-[#ff5a1f]/15' : 'bg-[#ff5a1f]/10'
+          }`}
       />
 
       {/* Hero Content (Minimal, Bold, Punchy) */}
@@ -128,9 +125,8 @@ export function HeroSection() {
 
           {/* Large Bold Headline */}
           <h1
-            className={`text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-[1.0] font-heading transition-colors duration-300 ${
-              isDark ? 'text-white' : 'text-[#09090b]'
-            }`}
+            className={`text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight leading-[1.0] font-heading transition-colors duration-300 ${isDark ? 'text-white' : 'text-[#09090b]'
+              }`}
           >
             BUILD YOUR <br />
             <span className="text-gradient-orange">STRONGER</span>{' '}
@@ -140,80 +136,75 @@ export function HeroSection() {
 
           {/* Minimal 1-2 Line Subtext */}
           <p
-            className={`text-sm sm:text-base lg:text-lg max-w-xl leading-relaxed font-normal transition-colors duration-300 ${
-              isDark ? 'text-zinc-300' : 'text-zinc-600'
-            }`}
+            className={`text-sm sm:text-base lg:text-lg max-w-xl leading-relaxed font-normal transition-colors duration-300 ${isDark ? 'text-zinc-300' : 'text-zinc-600'
+              }`}
           >
             International-grade personal coaching, biomechanically perfected training, and customized sports nutrition.
           </p>
 
-          {/* Clean Action Buttons */}
+                {/* High-Converting Action Buttons */}
           <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-            <Link href="/programs" className="w-full sm:w-auto">
-              <Button
-                variant="primary"
-                size="lg"
-                className="w-full sm:w-auto justify-center shadow-lg"
-                rightIcon={<ArrowRight className="w-4 h-4" />}
-              >
-                Explore Programs
-              </Button>
-            </Link>
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new Event('open-vip-modal'))}
+                  className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gradient-to-r from-[#ff5a1f] to-[#ff7d47] text-white text-sm font-black uppercase tracking-wider shadow-[0_10px_35px_rgba(255,90,31,0.5)] hover:shadow-[0_14px_45px_rgba(255,90,31,0.7)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <Sparkles className="w-4 h-4 fill-white/80" />
+                  <span>Claim 1-Day Free Pass</span>
+                </button>
 
-            <Link href="/register" className="w-full sm:w-auto">
-              <Button
-                variant="secondary"
-                size="lg"
-                className="w-full sm:w-auto justify-center"
-                leftIcon={<Flame className="w-4 h-4 text-[#ff5a1f]" />}
-              >
-                Join Now
-              </Button>
-            </Link>
-          </div>
+                <Link href="/programs" className="w-full sm:w-auto">
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    className="w-full sm:w-auto justify-center"
+                    rightIcon={<ArrowRight className="w-4 h-4" />}
+                  >
+              Explore Programs
+            </Button>
+          </Link>
         </div>
       </div>
+    </div>
 
-      {/* Sleek Minimal Slide Indicators (Bottom Left / Center) */}
-      <div className="absolute bottom-6 left-4 sm:left-8 lg:left-12 z-20 flex items-center gap-2">
-        {SLIDES.map((s, idx) => (
-          <button
-            key={s.id}
-            onClick={() => setCurrent(idx)}
-            aria-label={`Slide ${idx + 1}`}
-            className={`transition-all duration-300 rounded-full cursor-pointer ${
-              current === idx
-                ? 'w-8 h-2 bg-[#ff5a1f] shadow-[0_0_10px_rgba(255,90,31,0.6)]'
-                : isDark
-                ? 'w-2 h-2 bg-white/30 hover:bg-white/60'
-                : 'w-2 h-2 bg-zinc-400/50 hover:bg-zinc-600'
-            }`}
-          />
-        ))}
-        <span
-          className={`ml-3 text-[11px] font-mono font-medium ${
-            isDark ? 'text-zinc-400' : 'text-zinc-600'
+      {/* Sleek Minimal Slide Indicators (Bottom Left / Center) */ }
+  <div className="absolute bottom-6 left-4 sm:left-8 lg:left-12 z-20 flex items-center gap-2">
+    {SLIDES.map((s, idx) => (
+      <button
+        key={s.id}
+        onClick={() => setCurrent(idx)}
+        aria-label={`Slide ${idx + 1}`}
+        className={`transition-all duration-300 rounded-full cursor-pointer ${current === idx
+            ? 'w-8 h-2 bg-[#ff5a1f] shadow-[0_0_10px_rgba(255,90,31,0.6)]'
+            : isDark
+              ? 'w-2 h-2 bg-white/30 hover:bg-white/60'
+              : 'w-2 h-2 bg-zinc-400/50 hover:bg-zinc-600'
           }`}
-        >
-          0{current + 1} / 0{SLIDES.length}
-        </span>
-      </div>
+      />
+    ))}
+    <span
+      className={`ml-3 text-[11px] font-mono font-medium ${isDark ? 'text-zinc-400' : 'text-zinc-600'
+        }`}
+    >
+      0{current + 1} / 0{SLIDES.length}
+    </span>
+  </div>
 
-      {/* Hidden preloader for subsequent slide images */}
-      <div className="hidden pointer-events-none" aria-hidden="true">
-        {SLIDES.map((slide, idx) =>
-          idx !== current ? (
-            <Image
-              key={`preload-${slide.id}`}
-              src={slide.image}
-              alt=""
-              width={16}
-              height={16}
-              priority={false}
-            />
-          ) : null
-        )}
-      </div>
-    </section>
+  {/* Hidden preloader for subsequent slide images */ }
+  <div className="hidden pointer-events-none" aria-hidden="true">
+    {SLIDES.map((slide, idx) =>
+      idx !== current ? (
+        <Image
+          key={`preload-${slide.id}`}
+          src={slide.image}
+          alt=""
+          width={16}
+          height={16}
+          priority={false}
+        />
+      ) : null
+    )}
+  </div>
+    </section >
   );
 }

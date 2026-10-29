@@ -4,6 +4,7 @@ import { query } from '@/lib/db';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { formatCurrency } from '@/lib/utils';
+import { SITE_CONFIG } from '@/lib/constants';
 import { Check, Flame, Sparkles, Shield, ArrowRight } from 'lucide-react';
 
 export const metadata = {
@@ -27,8 +28,8 @@ export default async function MembershipPage() {
     plans = [
       {
         id: 'plan_01',
-        name: 'Monthly Tier',
-        slug: 'monthly-tier',
+        name: 'Monthly Kickstart',
+        slug: 'monthly-kickstart',
         tag: 'FLEXIBLE',
         duration_months: 1,
         price: 4999,
@@ -39,8 +40,8 @@ export default async function MembershipPage() {
       },
       {
         id: 'plan_02',
-        name: 'Quarterly Metamorphosis',
-        slug: 'quarterly-tier',
+        name: 'Quarterly Transformer',
+        slug: 'quarterly-transformer',
         tag: 'MOST POPULAR',
         duration_months: 3,
         price: 12999,
@@ -51,8 +52,8 @@ export default async function MembershipPage() {
       },
       {
         id: 'plan_03',
-        name: 'Half-Yearly Elite',
-        slug: 'half-yearly-tier',
+        name: 'Half-Yearly Elite Athlete',
+        slug: 'half-yearly-elite',
         tag: 'DEDICATED',
         duration_months: 6,
         price: 22999,
@@ -63,8 +64,8 @@ export default async function MembershipPage() {
       },
       {
         id: 'plan_04',
-        name: 'Annual Onyx VIP',
-        slug: 'yearly-tier',
+        name: 'Annual Black Card VIP',
+        slug: 'annual-black-card',
         tag: 'ALL-INCLUSIVE',
         duration_months: 12,
         price: 39999,
@@ -182,6 +183,23 @@ export default async function MembershipPage() {
           <p className="text-xs text-zinc-400 leading-relaxed max-w-xl mx-auto">
             If in your first 14 days you do not feel our facility, coaches, and environment match the world-class standard promised, we will cheerfully refund 100% of your membership fee.
           </p>
+          <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link href="/contact">
+              <Button variant="outline" size="sm" className="rounded-full">
+                Schedule Private Club Tour
+              </Button>
+            </Link>
+            <a
+              href={`https://wa.me/${(SITE_CONFIG.whatsapp || '919876543210').replace(/\D/g, '')}?text=${encodeURIComponent(
+                'Hi FitLife Wellness, I have a few questions about your membership tiers and club tour.'
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold transition-all shadow-md cursor-pointer"
+            >
+              <span>Chat on WhatsApp</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -29,6 +29,7 @@ export default function ContactPage() {
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,8 +45,13 @@ export default function ContactPage() {
         }),
       });
 
+      const data = await res.json();
+
       if (res.ok) {
         setSubmitted(true);
+        if (data.whatsappUrl) {
+          setWhatsappUrl(data.whatsappUrl);
+        }
         showToast({
           type: 'success',
           title: 'Consultation Request Sent',
@@ -174,24 +180,37 @@ export default function ContactPage() {
                   <p className="text-xs text-zinc-300 max-w-md mx-auto leading-relaxed">
                     Our Master Coach concierge has been notified. You will receive a personal message or call within 2 hours.
                   </p>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      setSubmitted(false);
-                      setFormData({
-                        name: '',
-                        email: '',
-                        phone: '',
-                        subject: 'General Enquiry',
-                        fitness_goal: 'Fat Loss & Recomposition',
-                        preferred_time: 'Morning (07:00 AM - 11:00 AM)',
-                        message: '',
-                      });
-                    }}
-                  >
-                    Send Another Message
-                  </Button>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                    {whatsappUrl && (
+                      <a
+                        href={whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold shadow-lg transition-transform hover:scale-105"
+                      >
+                        <MessageSquare className="w-4 h-4" />
+                        <span>Chat on WhatsApp for Instant Confirmation</span>
+                      </a>
+                    )}
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setSubmitted(false);
+                        setFormData({
+                          name: '',
+                          email: '',
+                          phone: '',
+                          subject: 'General Enquiry',
+                          fitness_goal: 'Fat Loss & Recomposition',
+                          preferred_time: 'Morning (07:00 AM - 11:00 AM)',
+                          message: '',
+                        });
+                      }}
+                    >
+                      Send Another Message
+                    </Button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">

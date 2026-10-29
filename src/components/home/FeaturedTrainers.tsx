@@ -27,8 +27,8 @@ export interface TrainerItem {
 export function FeaturedTrainers({ trainers = [] }: { trainers: TrainerItem[] }) {
   const displayTrainers = trainers.length > 0 ? trainers : [
     {
-      id: 'cch_01',
-      user_id: 'usr_02',
+      id: 'cch_001',
+      user_id: 'usr_coach_001',
       name: 'Marcus Vance',
       title: 'Head of Strength & Biomechanics',
       bio: 'Former national powerlifter and CSCS specialist with 12 years directing elite hypertrophy camps.',
@@ -41,8 +41,8 @@ export function FeaturedTrainers({ trainers = [] }: { trainers: TrainerItem[] })
       avatar: IMAGES.trainers.marcus,
     },
     {
-      id: 'cch_02',
-      user_id: 'usr_03',
+      id: 'cch_002',
+      user_id: 'usr_coach_002',
       name: 'Elena Rostova',
       title: 'Master Conditioning Specialist',
       bio: 'Ex-Olympic track conditioning coach specializing in rapid metabolic fat oxidation and VO2 max development.',
@@ -55,8 +55,8 @@ export function FeaturedTrainers({ trainers = [] }: { trainers: TrainerItem[] })
       avatar: IMAGES.trainers.elena,
     },
     {
-      id: 'cch_03',
-      user_id: 'usr_04',
+      id: 'cch_003',
+      user_id: 'usr_coach_003',
       name: 'Kai Jensen',
       title: 'Hypertrophy & Physique Architect',
       bio: 'Dedicated natural bodybuilding coach with a master degree in Exercise Science from Loughborough.',
@@ -69,8 +69,8 @@ export function FeaturedTrainers({ trainers = [] }: { trainers: TrainerItem[] })
       avatar: IMAGES.trainers.kai,
     },
     {
-      id: 'cch_04',
-      user_id: 'usr_05',
+      id: 'cch_004',
+      user_id: 'usr_coach_004',
       name: 'Dr. Maya Lin',
       title: 'Clinical Nutritionist & Mobility Coach',
       bio: 'Doctor of Clinical Nutrition and certified yoga therapist integrating blood chemistry and fascial health.',
@@ -147,12 +147,13 @@ export function FeaturedTrainers({ trainers = [] }: { trainers: TrainerItem[] })
                 </div>
 
                 <div className="pt-3 border-t border-white/5 flex items-center justify-between">
-                  <span className="text-xs font-bold text-zinc-200">
-                    {formatCurrency(tr.hourly_rate)} <span className="text-[10px] text-zinc-500 font-normal">/ session</span>
+                  <span className="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    Accepting Clients
                   </span>
                   <Link href={`/trainers/${tr.id}`}>
-                    <span className="text-xs font-bold text-[#c6ff3b] hover:text-white transition-colors cursor-pointer flex items-center gap-1">
-                      View Profile &rarr;
+                    <span className="text-xs font-bold text-[#ff5a1f] hover:text-white transition-colors cursor-pointer flex items-center gap-1">
+                      Consult Coach &rarr;
                     </span>
                   </Link>
                 </div>

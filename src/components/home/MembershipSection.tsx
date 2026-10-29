@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { formatCurrency } from '@/lib/utils';
+import { SITE_CONFIG } from '@/lib/constants';
 import { Check, Flame, Sparkles, ArrowRight } from 'lucide-react';
 
 export interface MembershipPlanItem {
@@ -24,8 +25,8 @@ export function MembershipSection({ plans = [] }: { plans: MembershipPlanItem[] 
   const displayPlans = plans.length > 0 ? plans : [
     {
       id: 'plan_01',
-      name: 'Monthly Tier',
-      slug: 'monthly-tier',
+      name: 'Monthly Kickstart',
+      slug: 'monthly-kickstart',
       tag: 'FLEXIBLE',
       duration_months: 1,
       price: 4999,
@@ -36,8 +37,8 @@ export function MembershipSection({ plans = [] }: { plans: MembershipPlanItem[] 
     },
     {
       id: 'plan_02',
-      name: 'Quarterly Metamorphosis',
-      slug: 'quarterly-tier',
+      name: 'Quarterly Transformer',
+      slug: 'quarterly-transformer',
       tag: 'MOST POPULAR',
       duration_months: 3,
       price: 12999,
@@ -48,8 +49,8 @@ export function MembershipSection({ plans = [] }: { plans: MembershipPlanItem[] 
     },
     {
       id: 'plan_03',
-      name: 'Half-Yearly Elite',
-      slug: 'half-yearly-tier',
+      name: 'Half-Yearly Elite Athlete',
+      slug: 'half-yearly-elite',
       tag: 'DEDICATED',
       duration_months: 6,
       price: 22999,
@@ -60,8 +61,8 @@ export function MembershipSection({ plans = [] }: { plans: MembershipPlanItem[] 
     },
     {
       id: 'plan_04',
-      name: 'Annual Onyx VIP',
-      slug: 'yearly-tier',
+      name: 'Annual Black Card VIP',
+      slug: 'annual-black-card',
       tag: 'ALL-INCLUSIVE',
       duration_months: 12,
       price: 39999,
@@ -171,6 +172,40 @@ export function MembershipSection({ plans = [] }: { plans: MembershipPlanItem[] 
               </div>
             );
           })}
+        </div>
+
+        {/* VIP Membership Concierge Callout */}
+        <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#18181c] via-[#121215] to-[#18181c] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+          <div className="space-y-1.5 text-center md:text-left">
+            <span className="text-[10px] font-black uppercase text-[#c6ff3b] tracking-widest block">
+              Concierge Guidance
+            </span>
+            <h4 className="text-xl sm:text-2xl font-black uppercase font-heading text-white">
+              NEED HELP CHOOSING OR WANT A PRIVATE CLUB TOUR?
+            </h4>
+            <p className="text-xs sm:text-sm text-zinc-400 max-w-xl">
+              Experience the recovery plunge suites and competition floor before deciding. Speak with our Membership Director.
+            </p>
+          </div>
+          <div className="flex items-center gap-3 shrink-0">
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event('open-vip-modal'))}
+              className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all cursor-pointer"
+            >
+              Book Club Tour
+            </button>
+            <a
+              href={`https://wa.me/${SITE_CONFIG.whatsapp?.replace(/\D/g, '')}?text=${encodeURIComponent(
+                'Hi FitLife Wellness, I have a few questions regarding your membership tiers and facilities.'
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
+            >
+              <span>WhatsApp Us</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

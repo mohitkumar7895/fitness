@@ -6,6 +6,7 @@ import { queryOne } from '@/lib/db';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { formatCurrency } from '@/lib/utils';
+import { SITE_CONFIG } from '@/lib/constants';
 import {
   Clock,
   BarChart3,
@@ -203,11 +204,23 @@ export default async function ProgramDetailPage({
                 </div>
               </div>
 
-              <Link href={`/register?program=${program.slug}`} className="block w-full">
-                <Button variant="primary" size="lg" className="w-full">
-                  Enroll in Protocol
-                </Button>
-              </Link>
+              <div className="space-y-2.5">
+                <Link href={`/register?program=${program.slug}`} className="block w-full">
+                  <Button variant="primary" size="lg" className="w-full justify-center">
+                    Enroll in Protocol
+                  </Button>
+                </Link>
+                <a
+                  href={`https://wa.me/${SITE_CONFIG.whatsapp?.replace(/\D/g, '')}?text=${encodeURIComponent(
+                    `Hi FitLife Wellness! I have a question about the ${program.title} blueprint.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 rounded-full border border-white/15 hover:border-white/30 text-xs font-bold text-zinc-300 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                >
+                  <span>Ask Coach on WhatsApp</span>
+                </a>
+              </div>
 
               <div className="text-center">
                 <span className="text-[11px] text-zinc-400 flex items-center justify-center gap-1.5">

@@ -13,6 +13,7 @@ import {
   X,
   ChevronDown,
   LogOut,
+  Sparkles,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -182,6 +183,14 @@ export function Navbar() {
               </div>
             ) : (
               <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new Event('open-vip-modal'))}
+                  className="px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-gradient-to-r from-[#ff5a1f] to-[#ff7d47] text-white hover:brightness-110 shadow-[0_2px_12px_rgba(255,90,31,0.35)] transition-all cursor-pointer hidden xl:inline-flex items-center gap-1.5"
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Free Pass</span>
+                </button>
                 <Link href="/login">
                   <Button variant="ghost" size="sm" className="rounded-full">
                     Sign In
@@ -278,6 +287,17 @@ export function Navbar() {
                   </>
                 ) : (
                   <>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        window.dispatchEvent(new Event('open-vip-modal'));
+                      }}
+                      className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl bg-gradient-to-r from-[#ff5a1f] to-[#ff7d47] text-white font-black text-sm shadow-lg cursor-pointer"
+                    >
+                      <Sparkles className="w-4 h-4" />
+                      <span>Claim 1-Day Free VIP Pass</span>
+                    </button>
                     <Link href="/register" className="w-full">
                       <Button variant="primary" size="md" className="w-full">
                         Join FitLife Today
